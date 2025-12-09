@@ -1,174 +1,174 @@
-🛡️ Cloud Security – AWS (Detection Engineering + Hardening)
+🛡️ Cloud Security-AWS (Detection Engineering + Hardening)
 IAM • S3 Security • CloudTrail Analytics • Detection Engineering • Security Baseline
 
-Este repositório reúne detecções práticas e recomendações de hardening para fortalecer a postura de segurança em ambientes AWS.
-Ele combina:
+This repository brings together practical detections and hardening recommendations to strengthen the security posture in AWS environments.
+It combines:
 
 Detection Engineering
 
-Threat Analysis com CloudTrail
+Threat Analysis with CloudTrail
 
 IAM Privilege Escalation Detection
 
 S3 Public Bucket Detection
 
-Hardening e boas práticas AWS Security Baseline
+Hardening and AWS Security Baseline best practices
 
-Ideal para quem atua em SOC, Cloud Security, DevSecOps, Blue Team e DFIR.
+Ideal for those working in SOC, Cloud Security, DevSecOps, Blue Team and DFIR.
 
-🎯 Objetivos do Repositório
+🎯 Objectives of the repository
 
-✔ Detectar comportamentos suspeitos e configurações inseguras
-✔ Fortalecer a postura de segurança (Zero Trust + Least Privilege)
-✔ Automatizar análises com Python
-✔ Ajudar em investigações SOC / Cloud DFIR
-✔ Servir como portfólio técnico para recrutadores
+✔ Detect suspicious behavior and unsafe settings
+✔ Strengthen security posture (Zero Trust + Least Privilege)
+✔ Automate analytics with Python
+✔ Assist in SOC / Cloud DFIR investigations
+✔ Serve as a technical portfolio for recruiters
 
-📁 Estrutura do Repositório
+📁 Repository structure
 cloud-security-aws/
 │
 ├── iam/
-│   └── iam_privilege_escalation.py
+│ └ ─ ─ iam_privilege_escalation.py
 │
 ├── cloudtrail/
-│   └── cloudtrail_analyzer.py
+│ └ ─ ─ cloudtrail_analyzer.py
 │
 ├── detections/
-│   └── s3_public_buckets.py
+│ └ ─ ─ s3_public_buckets.py
 │
-├── hardening/
-│   ├── iam_hardening.md
-│   ├── s3_hardening.md
-│   ├── vpc_zero_trust.md
-│   └── cloudtrail_baseline.md
+hard── hardening/
+│ ├ ─ ─ iam_hardening.md
+│ ├ ─ ─ s3_hardening.md
+│ ├ ─ ─ vpc_zero_trust.md
+│ └ ─ ─ cloudtrail_baseline.md
 │
 └── requirements.txt
 
 
-Se a pasta hardening/ ainda não existir, pode criar: ela faz o recrutador ver maturidade real.
+If the hardening/ folder doesn't already exist, you can create it: it makes the recruiter see real maturity.
 
-🔍 Detection Engineering (Parte 1)
+🔍 Detection Engineering (Part 1)
 1. IAM Privilege Escalation Detection
 
-Script responsável por identificar políticas e permissões que podem resultar em escalonamento de privilégios, incluindo:
+Script responsible for identifying policies and permissions that may result in privilege escalation, including:
 
-Permissões wildcard "*"
+Wildcard permissions"*"
 
-iam:PassRole + ec2:RunInstances
+iam: PassRole + ec2: RunInstances
 
-iam:CreatePolicyVersion
+IAM: Createpolicy version
 
-sts:AssumeRole mal configurado
+Sts: misconfigured AssumeRole
 
-Service accounts excessivamente permissivas
+Overly permissive Service accounts
 
-🧩 MITRE ATT&CK:
+MIT MITRE ATT&CK:
 
-T1068 – Privilege Escalation
+T1068-Privilege Escalation
 
-T1078 – Valid Accounts
+T1078-Valid Accounts
 
-T1098 – Account Manipulation
+T1098-Account Manipulation
 
 2. CloudTrail Analyzer
 
-Analisa eventos críticos como:
+Analyzes critical events such as:
 
-Logins suspeitos
+Suspicious Logins
 
-Criação/remoção de usuários
+Creation / removal of users
 
-Alterações de roles/policies
+Changes to roles / policies
 
-Atividade fora de horário
+Out-of-hours activity
 
-API calls raras ou sensíveis
+Rare or sensitive API calls
 
-Este módulo ajuda a:
+This module helps:
 
-✔ priorizar alertas
-✔ identificar anomalias
-✔ apoiar investigações de incidentes
-✔ gerar indicadores para SIEM
+✔ prioritize alerts
+✔ identify anomalies
+✔ support incident investigations
+✔ generate indicators for SIEM
 
 3. S3 Public Buckets Detection
 
-Detecção automatizada de buckets expostos para:
+Automated detection of exposed buckets for:
 
 AllUsers
 
 AllAuthenticatedUsers
 
-Inclui detecção de:
+Includes detection of:
 
-ACLs abertas
+Open ACLs
 
-Policies permissivas
+Permissive Policies
 
-Falhas críticas de exposição de dados
+Critical data exposure failures
 
-🔐 Hardening & Security Baseline (Parte 2)
+🔐 Hardening & Security Baseline (Part 2)
 
-Além das detecções, este repositório inclui boas práticas de segurança para reforçar o ambiente AWS.
+In addition to detections, this repository includes security best practices to strengthen the AWS environment.
 
 IAM Hardening
 
-MFA obrigatório
+MFA required
 
-Senha forte + rotação
+Strong password + rotation
 
-Root sem access keys
+Root without access keys
 
-Uso extensivo de Roles
+Extensive use of Roles
 
-Remoção de permissões wildcard
+Removal of wildcard permissions
 
-Políticas baseadas em princípio de menor privilégio
+Policies based on the principle of Least Privilege
 
 S3 Hardening
 
-Bloqueio de acesso público
+Blocking public access
 
-SSE-S3 ou SSE-KMS habilitado
+SSE-S3 or SSE-KMS enabled
 
-Versionamento + MFA Delete
+Versioning + MFA Delete
 
-Lifecycle rules para retenção
+Lifecycle rules for retention
 
-Monitoramento de acessos suspeitos
+Monitoring suspicious accesses
 
 VPC & Network Hardening
 
-Segregação de subnets
+Segregation of subnets
 
-Security Groups explícitos
+Explicit Security Groups
 
-NACLs restritivas
+Restrictive NACLs
 
-Flow Logs habilitados
+Flow Logs enabled
 
-Zero Trust nas comunicações internas
+Zero Trust in internal communications
 
-CloudTrail & Auditoria
+CloudTrail & Audit
 
-CloudTrail habilitado em todas as regiões
+CloudTrail enabled in all regions
 
-Logs enviados para S3 privado
+Logs sent to S3 private
 
-Retenção adequada
+Proper retention
 
-Integração com CloudWatch Logs + métricas
+Integration with CloudWatch Logs + metrics
 
-Alertas para eventos sensíveis
+Alerts for sensitive events
 
-▶️ Como executar as detecções
-pip install -r requirements.txt
+▶️ How to perform detections
+pip install-r requirements.txt
 
 python iam/iam_privilege_escalation.py
 python cloudtrail/cloudtrail_analyzer.py
 python detections/s3_public_buckets.py
 
-🧠 Skills Demonstradas com Este Repositório
+🧠 Skills demonstrated with this repository
 
 AWS Security
 
@@ -186,14 +186,14 @@ Security Best Practices
 
 Zero Trust Architecture
 
-SIEM-ready detections
+SIEM-ready detection
 
-Postura profissional SOC / Cloud
+Professional SoC / Cloud posture
 
-📬 Contato
+📬 Contact
 
 Gustavo Okamoto
-Cybersecurity Analyst — SOC | Threat Detection | Cloud Security
+Cybersecurity Analyst — SOC / Threat Detection / Cloud Security
 📧 gugaokamoto1@gmail.com
 
 🔗 linkedin.com/in/gustavo-okamoto-de-carvalho-ti
